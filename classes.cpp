@@ -11,7 +11,7 @@ card::card(int t){
              name="";break;}
     default:{name="Error.This type don't exist..";break;} }
                                                             }
-card::show(){
+void card::show(){
   std::cout<<name<<std::endl;}
 
 int card::get_arg_type(){return arg_type;}
