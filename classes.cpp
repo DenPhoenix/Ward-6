@@ -1,17 +1,30 @@
-#include "classes.h"
+#ifndef CLASSES_H_INCLUDED
+#define CLASSES_H_INCLUDED
 
-card::card(int t){
-  type(t);
-  switch t {
-    case 1: {arg_type=1;
-             name="I am hangry...";break;}
-    case 2: {arg_type=2;
-             name=" ";break;}
-    case 3: {arg_type=3;
-             name="";break;}
-    default:{name="Error.This type don't exist..";break;} }
-                                                            }
-void card::show(){
-  std::cout<<name<<std::endl;}
+#include <string>
+#include <vector>
+#include <algorithm>
+#include <random>
+#include <iostream>
 
-int card::get_arg_type(){return arg_type;}
+//*********************************************************//
+class card {
+  int type;
+  int arg_type;
+  std::string name;
+public:
+  card(int t);
+  void show();
+  int get_arg_type();
+};
+//*********************************************************//
+class card_deck{
+    std::vector<card> deck;
+public:
+   card_deck(std::vector<int> init);
+   void resort();
+card operator [](int i);
+};
+
+#endif // CLASSES_H_INCLUDED
+//*********************************************************//
