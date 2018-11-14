@@ -9,6 +9,7 @@ class card {
   public:
   card(int t);
   void show();
+  int get_arg_type();
 };
 
 #endif // WARD_6_CLASSES_H_INCLUDED
