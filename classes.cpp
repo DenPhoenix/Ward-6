@@ -43,3 +43,6 @@ std::shuffle(deck.begin(),deck.end(),dre);
 
 //*********************************************************//
 
+player::player(string NN,vector<player>* PS){
+name=NN;coin=0;active=true;pls=PS;}
+
