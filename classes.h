@@ -25,18 +25,18 @@ public:
    void resort();
 card operator [](int i);
 };
-//*********************************************************//
 
+//*********************************************************//
 class player {
-  string name;
+  std::string name;
   int coin;
   bool active;
-  vector <card> hand;
-  vector<player>* pls;
+  std::vector <card> hand;
+  std::vector<player>* pls;
 public:
-  player(string NN,vector<player>* PS);
+  player(std::string NN,std::vector<player>* PS);
   void give_coin(int count,int& bank);
-  void get_coin(int count,int& bank)
+  void get_coin(int count,int& bank);
   void get_card(card_deck& deck);
   void give_card(card cd,card_deck& table);//table - discard
   void show_status();//{cout<<name<<coin<<active<<endl;}
@@ -45,4 +45,3 @@ public:
 };
 
 #endif // CLASSES_H_INCLUDED
-
