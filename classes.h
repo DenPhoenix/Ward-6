@@ -37,7 +37,7 @@ public:
   player(std::string NN,std::vector<player>* PS);
   void give_coin(int count,int& bank);
   void get_coin(int count,int& bank);
-  void get_card(card_deck& deck);
+  void get_card(card_deck& deck,card_deck& table);
   void give_card(card cd,card_deck& table);//table - discard
   void show_status();//{cout<<name<<coin<<active<<endl;}
   int play_dice();
