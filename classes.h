@@ -19,12 +19,10 @@ public:
   int get_arg_type();
 };
 //*********************************************************//
-class card_deck{
-    std::vector<card> deck;
+class deck_manip{
 public:
-   card_deck(std::vector<int> init);
-   void resort();
-card operator [](int i);
+   static void initialize(std::vector<card> deck,std::vector<int> init);
+   static void resort(std::vector<card> deck);
 };
 
 //*********************************************************//
@@ -38,8 +36,8 @@ public:
   player(std::string NN,std::vector<player>* PS);
   void give_coin(int count,int& bank);
   void get_coin(int count,int& bank);
-  void get_card(card_deck& deck,card_deck& table);
-  void give_card(card cd,card_deck& table);//table - discard
+  void get_card(std::vector<card>& deck,std::vector<card>& table);
+  void give_card(card cd,std::vector<card>& table);//table - discard
   void show_status();//{cout<<name<<coin<<active<<endl;}
   int play_dice();
   void play_card();//{card logic();void act(card cd,player target);void act(card cd) - on-self;void act(card cd)- on-players,modify pls}
