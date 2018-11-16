@@ -56,3 +56,18 @@ void player::get_coin(int count,int& bank){
 if (bank<count){std::cout<<"Bank is empty!!!"<<std::endl;}
 else{coin=coin+count;bank=bank-count;} }
 
+void player::get_card(card_deck& deck,card_deck& table){
+if (deck.empty()){deck=table;deck.resort();table.clear();}
+hand.push_back(deck.back());
+deck.pop_back(); }
+
+void player::give_card(card cd,card_deck& table){
+if(!hand.empty()){table.push_back(cd);hand.erase(std::find(hand.begin(),hand.end(),cd));}
+else{std::cout<<"hand is empty!!!"<<std::endl;} }
+
+int player::play_dice(){
+std::default_random_engine dre;
+std::normal_distribution Nd(2,13);
+return std::static_cast<int> (std::round(Nd(dre))); }
+
+
