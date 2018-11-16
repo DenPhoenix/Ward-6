@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <random>
 #include <iostream>
+#include <cmath>
 
 //*********************************************************//
 class card {
