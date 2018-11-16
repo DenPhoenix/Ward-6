@@ -28,15 +28,13 @@ int card::get_arg_type(){return arg_type;}
 
 //*********************************************************//
 
-card_deck::card_deck(std::vector<int> init){
+void deck_manip::initialize(std::vector<card>& deck,std::vector<int> init){
     for(unsigned i=0;i<init.size();i++){
             for(int j=0;j<init[i];j++){
                 card tmp(i+1);
                 deck.push_back(tmp);} } }
 
-card card_deck::operator [](int i){return deck[i];}
-
-void card_deck::resort(){
+void deck_manip::resort(std::vector<card>& deck){
 std::default_random_engine dre;
 std::shuffle(deck.begin(),deck.end(),dre);
 }
@@ -56,12 +54,12 @@ void player::get_coin(int count,int& bank){
 if (bank<count){std::cout<<"Bank is empty!!!"<<std::endl;}
 else{coin=coin+count;bank=bank-count;} }
 
-void player::get_card(card_deck& deck,card_deck& table){
-if (deck.empty()){deck=table;deck.resort();table.clear();}
+void player::get_card(std::vector<card>& deck,std::vector<card>& table){
+if (deck.empty()){deck=table;deck_manip::resort(deck);table.clear();}
 hand.push_back(deck.back());
 deck.pop_back(); }
 
-void player::give_card(card cd,card_deck& table){
+void player::give_card(card cd,std::vector<card>& table){
 if(!hand.empty()){table.push_back(cd);hand.erase(std::find(hand.begin(),hand.end(),cd));}
 else{std::cout<<"hand is empty!!!"<<std::endl;} }
 
