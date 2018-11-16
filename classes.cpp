@@ -47,3 +47,12 @@ player::player(std::string NN,std::vector<player>* PS){
 name=NN;coin=0;active=true;pls=PS;}
 
 void player::show_status(){std::cout<<"Name="<<name<<"Coin="<<coin<<"Active:"<<active<<std::endl;}
+
+void player::give_coin(int count,int& bank){
+if(coin>=count){coin=coin-count;bank=bank+count;}
+if(coin<count && coin>0){bank=bank+count-coin;coin=0;} }
+
+void player::get_coin(int count,int& bank){
+if (bank<count){std::cout<<"Bank is empty!!!"<<std::endl;}
+else{coin=coin+count;bank=bank-count;} }
+
