@@ -7,6 +7,7 @@
 #include <random>
 #include <iostream>
 #include <cmath>
+#include <ctime>
 
 //*********************************************************//
 class card {
@@ -17,12 +18,13 @@ public:
   card(int t);
   void show();
   int get_arg_type();
+  bool operator ==(card cd);
 };
 //*********************************************************//
 class deck_manip{
 public:
-   static void initialize(std::vector<card> deck,std::vector<int> init);
-   static void resort(std::vector<card> deck);
+   static void initialize(std::vector<card>& deck,std::vector<int>& init);
+   static void resort(std::vector<card>& deck);
 };
 
 //*********************************************************//
@@ -41,6 +43,7 @@ public:
   void show_status();//{cout<<name<<coin<<active<<endl;}
   int play_dice();
   void play_card();//{card logic();void act(card cd,player target);void act(card cd) - on-self;void act(card cd)- on-players,modify pls}
+  void show_hand();
 };
 
 #endif // CLASSES_H_INCLUDED
