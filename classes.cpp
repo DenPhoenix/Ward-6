@@ -26,16 +26,19 @@ void card::show(){
 
 int card::get_arg_type(){return arg_type;}
 
+bool card::operator ==(card cd){return (type==cd.type);}
+
 //*********************************************************//
 
-void deck_manip::initialize(std::vector<card>& deck,std::vector<int> init){
+void deck_manip::initialize(std::vector<card>& deck,std::vector<int>& init){
     for(unsigned i=0;i<init.size();i++){
             for(int j=0;j<init[i];j++){
                 card tmp(i+1);
                 deck.push_back(tmp);} } }
 
 void deck_manip::resort(std::vector<card>& deck){
-std::default_random_engine dre;
+unsigned int seed=time(0);
+static std::default_random_engine dre(seed);
 std::shuffle(deck.begin(),deck.end(),dre);
 }
 
@@ -44,7 +47,7 @@ std::shuffle(deck.begin(),deck.end(),dre);
 player::player(std::string NN,std::vector<player>* PS){
 name=NN;coin=0;active=true;pls=PS;}
 
-void player::show_status(){std::cout<<"Name="<<name<<"Coin="<<coin<<"Active:"<<active<<std::endl;}
+void player::show_status(){std::cout<<"Name="<<name<<"  Coin="<<coin<<"  Active:"<<active<<std::endl;}
 
 void player::give_coin(int count,int& bank){
 if(coin>=count){coin=coin-count;bank=bank+count;}
@@ -60,12 +63,20 @@ hand.push_back(deck.back());
 deck.pop_back(); }
 
 void player::give_card(card cd,std::vector<card>& table){
-if(!hand.empty()){table.push_back(cd);hand.erase(std::find(hand.begin(),hand.end(),cd));}
-else{std::cout<<"hand is empty!!!"<<std::endl;} }
+    if(!hand.empty()){
+            std::vector<card>::iterator pos=std::find(hand.begin(),hand.end(),cd);
+            if (pos!=hand.end()){table.push_back(cd);hand.erase(std::find(hand.begin(),hand.end(),cd));}
+            else {std::cout<<"In hand no such card!!!"<<std::endl;} }
+    else{std::cout<<"hand is empty!!!"<<std::endl;} }
+
+void player::show_hand(){
+for(auto elem:hand){
+            elem.show();}
+}
 
 int player::play_dice(){
-std::default_random_engine dre;
-std::normal_distribution Nd(2,13);
-return std::static_cast<int> (std::round(Nd(dre))); }
-
+unsigned int seed=time(0);
+static std::default_random_engine dre(seed);
+static std::uniform_int_distribution<int> Nd(1,6);
+return  Nd(dre)+Nd(dre);}
 
